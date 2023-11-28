@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 public class Main {
   static boolean isSet = false;
  static Boolean looper = true;
+  static Boolean quitter = false;
+
  //default to 2.
  static int amount = 2;
  static int sleepingtime = 1000;
@@ -18,6 +20,7 @@ public class Main {
       System.out.println(isSet);
       if (isSet == true) {
         for (int i = 0; i < amount; i++) {
+          if (quitter == false) {
                     try {
             TimeUnit.MILLISECONDS.sleep(sleepingtime);
           } catch (InterruptedException e) {
@@ -29,11 +32,11 @@ public class Main {
           bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 
           if(i == amount - 1) {
-            System.out.println(amount);
-            looper = false;
+            isSet = false;
             break;
 
           }
+        }
         }
       }
     }
